@@ -179,11 +179,7 @@ DEPENDENCIES
   byebug
   coffee-rails (~> 4.2)
   font-awesome-rails
-<<<<<<< HEAD
-  haml-rails (>= 1.0, <= 2.0.1)
-=======
   haml-rails
->>>>>>> master
   jbuilder (~> 2.5)
   jquery-rails
   listen (~> 3.0.5)

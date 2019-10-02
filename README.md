@@ -10,11 +10,9 @@
 ### Association
 - has_many :messeges
 - has_many :groups_users
-<<<<<<< HEAD
+
 - has_many :grups, through: groups_users:
-=======
 - has_many :grups, through: groups_users
->>>>>>> master
 
 ## groups
 |Column|Type|Options|
@@ -24,11 +22,8 @@
 ### Association
 - has_many :groups_users
 - has_many :messeges
-<<<<<<< HEAD
 - has_many :users, through: users_id:
-=======
 - has_many :users, through:groups_users
->>>>>>> master
 
 ## messegesテーブル
 |Column|Type|Options|
