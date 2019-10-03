@@ -5,30 +5,32 @@
 
 .left
   .left-header
-    .left-header__user
-      test-user
+  %h3.left-header__user
+    = current_user.name
+
     %ul.left-header__logo
-      %li.logo__edit-user
-        = fa_icon 'edit'
-        = fa_icon  'cog'
-  .left-bottom
-    .left-bottom__message1
-      test
-    .left-bottom__message2
-      さようなら
-    .left-bottom__message3
-      smple-group
-    .left-bottom__message4
-      hello!
-    .left-bottom__message5
-      example
-    .left-bottom__message6
-      まだメッセージがありません
+      %li.logo__edit1
+        = link_to new_group_path do
+          = fa_icon 'pencil-square-o', class: 'icon'
+          .logo__edit2
+          = link_to edit_user_path(current_user) do
+            = fa_icon 'cog', class: 'icon'
+          -# ユーザー編集ページに行くためのパスを追加
+  .groups
+    .group
+      - current_user.groups.each do |group|
+        = link_to group_messages_path(group) do
+          .group__name
+            = group.name
+          .group__message
+            メッセージはまだありません。
+        
+  
 
 .main
   .left-contents
     .left-contents__logo
-      EDIT 
+      edit 
     .left-contents__message1
       text-group
     .left-contents__message2
@@ -48,9 +50,11 @@
       さようなら
   
   .from-tag
-    .from-tag__name
+  %from
+    %input.from-tag__name
       tayp-message
       .from-tag__name__img
-        = fa_icon  'image'
-    .from-tag__pochi
-      send
+        = fa_icon 'picture-o', class: 'icon'
+        %input.hidden{type: 'file'}
+    %input.from-tag__pochi{type: 'submit', value: 'Send'}
+      

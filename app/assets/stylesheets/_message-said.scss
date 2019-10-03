@@ -66,13 +66,13 @@
   }
     .from-tag{
       background-color: #ddd;
-      bottom: 0;
-      height: 70px;
-      line-height: 50px;
-      
+      height: 90px;
+      // line-height: 50px;
+      box-sizing: border-box;
+      padding: 20px 50px 20px 40px;
       display: inline-block;
-      width: calc(100vw - 300px);
-      padding: 20px;
+      // width: calc(100vw - 300px);
+      // padding: 20px;
       border-radius: 4px;
       float: left;
       text-decoration: none;

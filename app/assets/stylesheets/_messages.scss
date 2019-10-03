@@ -5,7 +5,6 @@
   background-color: #38AEF0;
   height: 24px;
   position: fixed;
-  z-index: 3;
   &__logo {
     font-size: 16px;
     text-align: center;
@@ -19,13 +18,10 @@
   height: 100px;
   color: #fff;
   float: left;
-  z-index: 2;
-  position: absolute;
   &-header{
     height: 100px;
     line-height: 100px;
     background-color: #253141;
-    width: 300px;
     font-weight: bold;
     &__user {
       display: inline-block;
@@ -34,43 +30,54 @@
       }
     &__logo {
       display: inline-block;
-      padding-right:  20px;
+      // padding-right:  20px;
       float: right;
+      &__edit1{
+        color: white;
+        font-size: 20px;
       }
+      &__edit2{
+        color: white;
+        font-size: 20px;
+      }
+    }
 }
-    .left-bottom {  
-      height: calc(100vh - 124px);
-      background-color: #2f3e51;
-      box-sizing: border-box;
-      position: absolute;
-      width: 300px;
-      float: left;
-      padding-left:  20px;
-      z-index: 1;
-      &__message1{
-        padding: 20px 20px 5px;
-        font-size: 15px;
-        }
-      &__message2{
-        padding: 20px 20px 5px;
-        font-size: 11px;
-        }
-      &__message3{
-        padding: 20px 20px 5px;
-        font-size: 15px;
-        }
-      &__message4{
-        padding: 20px 20px 5px;
-        font-size: 11px;
-        }
-      &__message5{
-        padding: 20px 20px 5px;
-        font-size: 15px;
-        }
-      &__message6{
-        padding: 20px 20px 5px;
-        font-size: 11px;
-        }
+  .groups{  
+    height: calc(100vh - 124px);
+    background-color: #2f3e51;
+    color: #fff;
+    box-sizing: border-box;
+    position: absolute;
+    width: 300px;
+    float: left;
+    padding-left:  20px;
+    z-index: 1;
+    .group{
+        &__mane{
+          padding: 20px 20px 5px;
+          font-size: 15px;
+          }
+        &__message{
+          padding: 20px 20px 5px;
+          font-size: 11px;
+          }
+    
+      // &__message3{
+      //   padding: 20px 20px 5px;
+      //   font-size: 15px;
+      //   }
+      // &__message4{
+      //   padding: 20px 20px 5px;
+      //   font-size: 11px;
+      //   }
+      // &__message5{
+      //   padding: 20px 20px 5px;
+      //   font-size: 15px;
+      //   }
+      // &__message6{
+      //   padding: 20px 20px 5px;
+      //   font-size: 11px;
+      //   }
       }
     }
   
