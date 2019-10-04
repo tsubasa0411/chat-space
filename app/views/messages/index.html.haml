@@ -1,60 +1,32 @@
+.wrapper
+  = render 'shared/side_bar'
+  .chat
+    .header
+      .left-header__title
+        = @group.name
+        %ul.left-header__members
+          Member
+          %li.member
+            メンバー名
+          %li.member
+            メンバー名
+          %li.member
+            メンバー名
+      .right-header
+        .right-header__button
+          Edit
+    .messages
+      = render @messages
 
-.ue
-  .ue__logo
-    グループを作成しました
+    .form
+      = form_for [@group, @message] do |f|
+        = f.text_field :content, class: 'form__message', placeholder: 'type a message'
+        .form__mask
+          = f.label :image, class: 'form__mask__image' do
+            = fa_icon 'picture-o', class: 'icon'
+            = f.file_field :image, class: 'hidden'
+        = f.submit 'Send', class: 'form__submit'
 
-.left
-  .left-header
-  %h3.left-header__user
-    = current_user.name
 
-    %ul.left-header__logo
-      %li.logo__edit1
-        = link_to new_group_path do
-          = fa_icon 'pencil-square-o', class: 'icon'
-          .logo__edit2
-          = link_to edit_user_path(current_user) do
-            = fa_icon 'cog', class: 'icon'
-          -# ユーザー編集ページに行くためのパスを追加
-  .groups
-    .group
-      - current_user.groups.each do |group|
-        = link_to group_messages_path(group) do
-          .group__name
-            = group.name
-          .group__message
-            メッセージはまだありません。
-        
-  
 
-.main
-  .left-contents
-    .left-contents__logo
-      edit 
-    .left-contents__message1
-      text-group
-    .left-contents__message2
-      メッセージ
-    
-    
-  .line
-    .line__sen
-  .left-shita
-    .left-shita__messa1
-      test-user
-    .left-shita__messa2
-      こんにちは
-    .left-shita__messa3
-      test-user
-    .left-shita__messa4
-      さようなら
-  
-  .from-tag
-  %from
-    %input.from-tag__name
-      tayp-message
-      .from-tag__name__img
-        = fa_icon 'picture-o', class: 'icon'
-        %input.hidden{type: 'file'}
-    %input.from-tag__pochi{type: 'submit', value: 'Send'}
-      
+
