@@ -24,26 +24,26 @@ $(function() {
   }
 
 $('#new_message').on('subumit',function(e){
-  e.preventDefault();
+    e.preventDefault();
   // イベントを止め、同期通信で送信されるのをやめる
-  var formData = new FormData(this);
+    var formData = new FormData(this);
   // formから送信された内容を取得
-  var url = $(this).attr('action');
+    var url = $(this).attr('action');
   // formのアクションの属性を取得し、変数に代入
-$.ajax({//データベース送信
-  url: url,
-  type: "POST",
-  data: formData,
-  dataType: "json",
-  processData: false,
-  contentType: false
-})
+  $.ajax({//データベース送信
+    url: url,
+    type: "POST",
+    data: formData,
+    dataType: "json",
+    processData: false,
+    contentType: false
+  })
 
-      .done(function(data){
-              var html = buildHTML(data);
-            $(".messages").append(html.animate({scrollTop: $('.messages')[0].scrollHeight}, 'fast');
-            $('.form__message').val('');
-            $('.form__submit').prop('disabled', false);
+    .done(function(data){
+            var html = buildHTML(data);
+          $(".messages").append(html.animate({scrollTop: $('.messages')[0].scrollHeight}, 'fast');
+          $('.form__message')[0].reset();
+          $('.form__submit').prop('disabled', false);
   
 })
       .fail(function(){
