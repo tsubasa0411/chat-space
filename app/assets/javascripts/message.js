@@ -30,13 +30,13 @@ $('#new_message').on('subumit',function(e){
   // formから送信された内容を取得
     var url = $(this).attr('action');
   // formのアクションの属性を取得し、変数に代入
-  $.ajax({//データベース送信
-    url: url,
-    type: "POST",
-    data: formData,
-    dataType: "json",
-    processData: false,
-    contentType: false
+    $.ajax({//データベース送信
+      url: url,
+      type: "POST",
+      data: formData,
+      dataType: "json",
+      processData: false,
+      contentType: false
   })
 
     .done(function(data){
