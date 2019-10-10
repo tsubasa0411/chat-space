@@ -13,7 +13,12 @@ class UsersController < ApplicationController
       # editに戻る
     end
   end
+  def index
 
+    respond_to do |format|
+      format.html
+      format.json
+  end
   private
 
   def user_params

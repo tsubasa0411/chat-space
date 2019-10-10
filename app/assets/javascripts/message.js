@@ -40,11 +40,10 @@ $('#new_message').on('subumit',function(e){
   })
 
     .done(function(data){
-            var html = buildHTML(data);
-          $(".messages").append(html.animate({scrollTop: $('.messages')[0].scrollHeight}, 'fast');
-          $('.form__message')[0].reset();
-          $('.form__submit').prop('disabled', false);
-  
+      var html = buildHTML(data);
+      $(".messages").append(html.animate({scrollTop: $('.messages')[0].scrollHeight}, 'fast');
+      $('.form__message')[0].reset();
+      $('.form__submit').prop('disabled', false);
 })
       .fail(function(){
         alert('error');
