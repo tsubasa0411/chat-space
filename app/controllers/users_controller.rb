@@ -10,7 +10,7 @@ class UsersController < ApplicationController
       redirect_to root_path
     else
       render :edit
-      # editに戻る
+      
     end
   end
   def index

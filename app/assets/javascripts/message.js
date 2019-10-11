@@ -30,7 +30,7 @@ $('#new_message').on('subumit',function(e){
   // formから送信された内容を取得
     var url = $(this).attr('action');
   // formのアクションの属性を取得し、変数に代入
-    $.ajax({//データベース送信
+    $.ajax({
       url: url,
       type: "POST",
       data: formData,
@@ -69,7 +69,7 @@ var reloadMessages = function(){
     var insertHTML =""; 
     messases.forEach(function(messase){//配列messagesの中身一つ一つを取り出し、HTMLに変換したものを入れ物に足し合わせる
       insertHTML = buildHTML(message); 
-      $(".messages").append(instertHTML);//メッセージを追加
+      $(".messages").append(instertHTML);
     })
       $('.messages').animate({scrollTop: $('.messages')[0].scrollHeight}, 'fast');//最新のメッセージが一番下に表示されようにスクロールする。
       })
@@ -78,6 +78,6 @@ var reloadMessages = function(){
       });
     }
   };
-  setInterval(reloadMessages, 5000);//5000ミリ秒ごとにreloadMessagesという関数を実行し自動更新を行う。
+  setInterval(reloadMessages, 5000);
   });
 });
