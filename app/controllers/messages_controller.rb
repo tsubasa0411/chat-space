@@ -14,6 +14,7 @@ class MessagesController < ApplicationController
         format.json
     end
     #HTMLかLSONか分ける
+    flash[:notice] = 'メッセージが送信されました'
       # notice: 'メッセージが送信されました'
     else
       @messages = @group.messages.includes(:user)
