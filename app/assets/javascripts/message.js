@@ -30,7 +30,7 @@ $('#new_message').on('subumit',function(e){
   // formから送信された内容を取得
     var url = $(this).attr('action');
   // formのアクションの属性を取得し、変数に代入
-    $.ajax({//データベース送信
+    $.ajax({
       url: url,
       type: "POST",
       data: formData,
@@ -53,3 +53,31 @@ $('#new_message').on('subumit',function(e){
 
 });
 })
+// インクリメンタルサーチの記述↑
+
+// ↓自動更新
+var reloadMessages = function(){
+  if (window.location.href.match(/\/groups\/\d+\/messages/)){ //今いるページのリンクが/groups/グループID/messagesのパスとマッチすれば以下を実行。 
+    var last_message_id = $('.message:last').data("message-id");//dataメソッドで.messageにある:last最後のカスタムデータ属性を取得しlast_message_idに代入。
+  $.ajax({
+    url: "api/messages", 
+        type: 'get', 
+        dataType: 'json', 
+        data: {last_id: last_message_id} //取得したlast_message_id。またparamsとして渡すためlast_idとする。
+  })
+  .done(function(messases){ //通信成功したら、controllerから受け取ったデータ（messages)を引数にとって以下のことを行う
+    var insertHTML =""; 
+    messases.forEach(function(messase){//配列messagesの中身一つ一つを取り出し、HTMLに変換したものを入れ物に足し合わせる
+      insertHTML = buildHTML(message); 
+      $(".messages").append(instertHTML);
+    })
+      $('.messages').animate({scrollTop: $('.messages')[0].scrollHeight}, 'fast');//最新のメッセージが一番下に表示されようにスクロールする。
+      })
+      .fall(function(){
+        alert("自動更新に失敗しました");
+      });
+    }
+  };
+  setInterval(reloadMessages, 5000);
+  });
+});
