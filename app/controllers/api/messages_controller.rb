@@ -4,7 +4,4 @@ class Api::MessagesController < ApplicationController
     @messages = @group.messages.includes(:user).where('id > ?', params[:last_id]) 
     
   end
-
-
-
 end
