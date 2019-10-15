@@ -6,9 +6,7 @@
         = @group.name
         %ul.left-header__members
           Member:
-            - @group.group_users.each do |group_user|
-              %li.member
-              = user.name
+          = @users.pluck(:name).join(",")
       .right-header
         .right-header__button
         = link_to 'Edit',edit_group_path(@group.id) do
