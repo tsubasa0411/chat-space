@@ -28,7 +28,7 @@
       float: right;
       height: 40px;
       line-height: 40px;
-      margin-bottom: 50px;
+      margin-top: 28px;
       padding: 0 20px;
       &__button {
         color: $light_blue;
@@ -41,7 +41,7 @@
     background-color: #FAFAFA;
     box-sizing: border-box;
     padding: 46px 40px 0;
-    height: calc(100% - 100px - 125px);
+    height: calc(100% - 100px - 90px);
     .message {
       .upper-message {
         display: flex;
@@ -71,10 +71,7 @@
     background-color: #DDDDDD;
     box-sizing: border-box;
     height: 90px;
-    padding: 20px 50px 50px 40px;
-    position: fixed;
-    bottom: 0;
-    width: calc(100% - 300px);
+    padding: 20px 50px 20px 40px;
     &__message {
       border: none;
       float: left;

@@ -1,27 +1,27 @@
 .wrapper
-  = render 'shared/side_bar'
-  .chat
-    .header
-      .left-header__title
-        = @group.name
-        %ul.left-header__members
-          Member:
-          = @users.pluck(:name).join(",")
-      .right-header
-        .right-header__button
-        = link_to 'Edit',edit_group_path(@group.id) do
-    .messages
-      = render @messages
+  
+= render 'devise/shared/side_bar'
 
-    .form
-      = form_for [@group, @message] do |f|
-        = f.text_field :content, class: 'form__message', placeholder: 'type a message'
-        .form__mask
-          = f.label :image, class: 'form__mask__image' do
+.contents
+  .header
+    .header__left-box
+      .header__left-box__group
+        = @group.name
+      .header__left-box__member
+        members:
+        = @users.pluck(:name).join(",")
+    .header__btn
+      = link_to 'Edit', edit_group_path(@group), class: "button"
+
+  .messages
+    = render @messages
+
+  .form
+    = form_for [@group, @message] do |f|
+      .form-box
+        =f.text_field :content, class: 'form-box__message', placeholder: 'type a message'
+        .form-box__mask
+          = f.label :image, class: "form-box__mask__image" do
             = fa_icon 'picture-o', class: 'icon'
             = f.file_field :image, class: 'hidden'
-        = f.submit 'Send', class: 'form__submit'
-
-
-
-
+        = f.submit 'Send', class: 'form-box__submit'
