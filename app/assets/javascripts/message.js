@@ -50,19 +50,20 @@ $(function() {
 
 
   // 自動更新
-  $(function() {
+  var update =function(){
+  
     $(function() {
-      if (location.href.match(/\/groups\/\d+\/messages/)) {
-        setInterval(update, 5000);
-      }
-    });
-    function update(){
+      console.log(location.href);
+    if (location.href.match(/\/groups\/\d+\/messages/)){
+        
+    
+      $(function() {
       if($('.message')[0]){
         var message_id = $('.message:last').data('id');
       } else {
         return false
       }
-
+      
       $.ajax({
         url: "api/messages",
         type: 'GET',
@@ -70,18 +71,23 @@ $(function() {
         dataType: 'json'
       })
       .done(function(data){
-        console.log(date);
-        if (data.length){
+        console.log(data)
           $.each(data, function(index,data){
+
             var html = buildHTML(data);
             $('.messages').append(html)
             $('.messages').animate({ scrollTop: $('.messages')[0].scrollHeight});
           })
-        }
+        
       })
       .fail(function(){
         console.log('自動更新に失敗しました')
       })
-    }
-  })
+    })
+ 
+  }
+  
+});
+  }
+  setInterval(update, 5000);
 });
