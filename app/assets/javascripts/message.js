@@ -70,6 +70,7 @@ $(function() {
         dataType: 'json'
       })
       .done(function(data){
+        console.log(date);
         if (data.length){
           $.each(data, function(index,data){
             var html = buildHTML(data);
