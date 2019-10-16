@@ -27,9 +27,9 @@
           - @group.users.each do |user|
         .chat-group-user.clearfix
           %p.chat-group-user__name 
-            %input{name: ‘group[user_ids][]’, type: ‘hidden’, value: “#{ user.id }“}
+          %input{:name => "group[user_ids][]", :type => "hidden"}/
           %p.chat-group-user__name
-              = user.name
+             = user.name
 
             -# - if @users.present?
             -#   = @users.pluck(:name).join(",")
