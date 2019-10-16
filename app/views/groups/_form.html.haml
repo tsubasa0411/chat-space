@@ -24,14 +24,18 @@
     .chat-group-form__field--right
 
       #chat-group-users
-
         .chat-group-user.clearfix
+        %input{:name => "group[user_ids][]", :type => "hidden"}/
           %p.chat-group-user__name 
-            - if @users.present?
-              = @users.pluck(:name).join(",")
-            = current_user.name unless @users.present?
+            = current_user.name
 
   .chat-group-form__field.clearfix
     .chat-group-form__field--left
     .chat-group-form__field--right
       = f.submit class: 'chat-group-form__action-btn'
+
+
+
+      -# - if @users.present?
+      -#         = @users.pluck(:name).join(",")
+      -#       = current_user.name unless @users.present?
