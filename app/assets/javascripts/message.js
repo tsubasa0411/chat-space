@@ -53,7 +53,7 @@ $(function() {
   $(function() {
     $(function() {
       if (location.href.match(/\/groups\/\d+\/messages/)) {
-        setInterval(update, 5000);
+        setInterval(update, 3000);
       }
     });
     function update(){
