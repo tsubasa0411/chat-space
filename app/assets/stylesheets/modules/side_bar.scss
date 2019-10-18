@@ -1,12 +1,15 @@
-.side-bar {
+*{
   box-sizing: border-box;
+}
+.side-bar {
   color: $white;
   width: 300px;
-  float: left;
+  height:100%;
+  position: relative;
   .header {
     background-color: $side_blue_dark;
     height: 100px;
-    line-height: 99px;
+    line-height: 100px;
     padding: 0 20px;
     &__name {
       display: inline-block;
@@ -28,13 +31,16 @@
 
   .groups {
     background-color: $side_blue_light;
-    height: calc(100vh - 100px);
-    width: 260px;
-    overflow: auto;
+    height: calc(100% - 100px);
+    width: 300px;
     padding: 0 20px;
+    position: absolute;
+    top: 100px;
+    overflow: scroll;
+    a {
+      text-decoration: none;
+    }
     .group {
-      
-      box-sizing: border-box;
       padding: 20px 0 40px;
       &__name {
         color: $white;

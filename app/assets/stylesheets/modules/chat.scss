@@ -30,8 +30,8 @@
       line-height: 40px;
       margin-top: 28px;
       padding: 0 20px;
-      &__button {
-        color: $light_blue;
+      a {
+        color:$light_blue;
         text-decoration: none;
       }
     }
@@ -42,6 +42,7 @@
     box-sizing: border-box;
     padding: 46px 40px 0;
     height: calc(100% - 100px - 90px);
+    overflow: auto;
     .message {
       .upper-message {
         display: flex;

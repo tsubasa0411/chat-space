@@ -1,93 +1,75 @@
-$(function() {
-
+$(document).on('turbolinks:load', function(){ 
   function buildHTML(message){
-    var image = message.image ? `<img src = '${message.image}'>` : "";
-    var html =
-      `<div class="message" data-id="${message.id}">
-        <div class="upper-message">
-          <div class="upper-message__user">
-            ${message.user_name}
-          </div>
-          <div class="upper-message__time">
-            ${message.date}
-          </div>
-        </div>
-        <div class="lower-message">
-          <p class="lower-message__text">
-            ${message.content}
-          </p>
-          <div class="lower-message__image">
-            ${image}
-          </div>
-        </div>
-      </div>`
-    return html
+     var new_image = message.image.url ? `<img class= "lower-message__image" src= ${message.image.url} >` : "";
+     var html =
+      `<div class="message" data-message-id=${message.id}>
+         <div class="upper-message">
+           <div class="upper-message__user-name">
+             ${message.user_name}
+           </div>
+           <div class="upper-message__date">
+             ${message.created_at}
+           </div>
+         </div>
+         <div class="lower-message">
+           <p class="lower-message__content">
+             ${message.content}
+           </p>
+           ${new_image}
+         </div>
+       </div>`
+     return html;
   }
 
-  $('#new_message').on('submit', function(e){
-    e.preventDefault();
-    var formData = new FormData(this);
-    var url = $(this).attr('action');
+$('#new_message').on('submit', function(e){
+ e.preventDefault();
+ var formData = new FormData(this);
+ var url = $(this).attr('action')
+ $.ajax({
+   url: url,
+   type: "POST",
+   data: formData,
+   dataType: 'json',
+   processData: false,
+   contentType: false
+ })
+  .done(function(data){
+    var html = buildHTML(data);
+    $('.messages').append(html);
+    $('.messages').animate({scrollTop: $('.messages')[0].scrollHeight}, 'fast');   
+    $('form')[0].reset();
+  })
+   .fail(function(){
+     alert('error');
+   });
+   return false;
+ });
+
+  var reloadMessages = function(){
+    if(document.URL.match("messages")){
+    var last_message_id = $('.message:last').data("message-id");
+    var group_id = $(".messages").attr("id");
+    console.log(group_id)
+    var url = `/groups/${group_id}/api/messages`
     $.ajax({
       url: url,
-      type: "POST",
-      data: formData,
+      type: 'get',
       dataType: 'json',
-      processData: false,
-      contentType: false
+      data: {id: last_message_id}
     })
-    .done(function(message) {
-      var html = buildHTML(message);
-      $('.messages').append(html)
-      $('.messages').animate({ scrollTop: $('.messages')[0].scrollHeight});
-      $('form')[0].reset();
-    })
+    .done(function(messages) {
+      console.log(messages)
+      var insertHTML = '';
+        messages.forEach(function(message){
+          insertHTML = buildHTML(message);
+          $('.messages').append(insertHTML);
+          $('.messages').animate({scrollTop: $('.messages')[0].scrollHeight}, 'fast');
+      });
+    }) 
     .fail(function() {
       alert('エラー');
-    })
-    return false;
-  })
-
-
-  // 自動更新
-  var update =function(){
-  
-    $(function() {
-      console.log(location.href);
-    if (location.href.match(/\/groups\/\d+\/messages/)){
-        
-    
-      $(function() {
-      if($('.message')[0]){
-        var message_id = $('.message:last').data('id');
-      } else {
-        return false
-      }
-      
-      $.ajax({
-        url: "api/messages",
-        type: 'GET',
-        data: { id : message_id },
-        dataType: 'json'
-      })
-      .done(function(data){
-        console.log(data)
-          $.each(data, function(index,data){
-
-            var html = buildHTML(data);
-            $('.messages').append(html)
-            $('.messages').animate({ scrollTop: $('.messages')[0].scrollHeight});
-          })
-        
-      })
-      .fail(function(){
-        console.log('自動更新に失敗しました')
-      })
-    })
- 
-  }
-  
-});
-  }
-  setInterval(update, 5000);
+    });
+  };
+  };
+  setInterval(reloadMessages, 5000);
 });
